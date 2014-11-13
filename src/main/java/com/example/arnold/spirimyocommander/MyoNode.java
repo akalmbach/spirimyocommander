@@ -22,6 +22,16 @@ public class MyoNode implements NodeMain {
 
     private boolean enable = false;
 
+    public void setMyoDisconnected(){
+        current_velocity_command.getLinear().setX(0.0);
+        current_velocity_command.getLinear().setY(0.0);
+        current_velocity_command.getLinear().setZ(0.0);
+        current_velocity_command.getAngular().setX(0.0);
+        current_velocity_command.getAngular().setY(0.0);
+        current_velocity_command.getAngular().setZ(0.0);
+        current_gesture.setData("disconnected");
+    }
+
 
     public void updateOrientation(double roll, double pitch, double yaw){
         if (enable){
@@ -36,6 +46,7 @@ public class MyoNode implements NodeMain {
 
     public void updateGesture(com.thalmic.myo.Pose pose){
         current_gesture.setData(pose.name());
+
         switch (pose) {
             case UNKNOWN:
                 enable = false;
@@ -71,7 +82,7 @@ public class MyoNode implements NodeMain {
                 break;
             case FINGERS_SPREAD:
                 enable = false;
-                // Go Up
+                // Go down
                 current_velocity_command.getLinear().setX(0.0);
                 current_velocity_command.getLinear().setY(0.0);
                 current_velocity_command.getLinear().setZ(-1.0);
@@ -83,12 +94,16 @@ public class MyoNode implements NodeMain {
         }
     }
 
-    public geometry_msgs.Twist getCurrentTwist(){
+    public geometry_msgs.Twist getCurrentVelocityCommand(){
         return current_velocity_command;
     }
 
+    public String getCurrentGesture(){
+        return current_gesture.getData();
+    }
+
     private geometry_msgs.Twist applyDeadband(geometry_msgs.Twist command_in) {
-        // TODO(Arnold): Parameterize the deadband parameters
+        // TODO(Arnold): Parameterize the dead-band parameters
         geometry_msgs.Twist command_out = command_in;
 
         command_out.getAngular().setX(0);
@@ -100,7 +115,7 @@ public class MyoNode implements NodeMain {
         if (Math.abs(command_out.getLinear().getX()) < 0.1)
             command_out.getLinear().setX(0.0);
         if (Math.abs(command_out.getLinear().getY()) < 0.1)
-            command_out.getLinear().setZ(0.0);
+            command_out.getLinear().setY(0.0);
         if (Math.abs(command_out.getLinear().getZ()) < 0.1)
             command_out.getLinear().setZ(0.0);
 

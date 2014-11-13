@@ -123,10 +123,10 @@ public class MainActivity extends RosActivity {
 
             myo_node.updateOrientation(roll, pitch, yaw);
 
-            geometry_msgs.Twist twist = myo_node.getCurrentTwist();
+            geometry_msgs.Twist twist = myo_node.getCurrentVelocityCommand();
 
 
-            String twist_string = String.format("{(x:%f, y:%f, z:%f), (x:%f, y:%f, z:%f)}",
+            String twist_string = String.format("{%s (x:%f, y:%f, z:%f), (x:%f, y:%f, z:%f)}", myo_node.getCurrentGesture(),
                     twist.getLinear().getX(), twist.getLinear().getY(), twist.getLinear().getZ(),
                     twist.getAngular().getX(), twist.getAngular().getY(), twist.getAngular().getZ()
             );
@@ -135,7 +135,6 @@ public class MainActivity extends RosActivity {
 
         public void onPose(Myo myo, long timestamp, Pose pose) {
             myo_node.updateGesture(pose);
-
         }
 
     };
