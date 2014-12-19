@@ -110,7 +110,6 @@
     <orderEntry type="library" exported="" name="tf2_msgs-0.4.12" level="project" />
     <orderEntry type="library" exported="" name="com.springsource.org.apache.commons.lang-2.4.0" level="project" />
     <orderEntry type="module" module-name="android_honeycomb_mr2" exported="" />
-    <orderEntry type="module" module-name="android_gingerbread_mr1" />
   </component>
 </module>
 
