@@ -29,8 +29,8 @@ values being published. There will also be a std_msgs/String gesture topic, with
 The controls are implemented as follows (they can easily be changed, and probably should be)
 
 
-Arm Pitch & Fist Gesture -> Front/Back Speed
-Arm Yaw & Fist Gesture -> Yaw Speed
-Fingers Spread Gesture -> Go up
-Pinky to Thumb Gesture -> Go down
-Anything Else -> Hover
+- Arm Pitch & Fist Gesture -> Front/Back Speed
+- Arm Yaw & Fist Gesture -> Yaw Speed
+- Pinky to Thumb Gesture -> Go up
+- Fingers Spread Gesture -> Go down
+- Anything Else -> Hover
