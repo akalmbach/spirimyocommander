@@ -24,7 +24,7 @@ that you want to connect to. Then press back to get back to the main page.
 5. Do the arm detection gesture with the Myo on.
 6. On the screen, you'll see some debug information about the gesture the Myo is seeing and the cmd_vel
 being published. You should be able to rostopic echo cmd_vel from the machine with the roscore and see
-values being published.
+values being published. There will also be a std_msgs/String gesture topic, with the name of the gesture being read.
 
 The controls are implemented as follows (they can easily be changed, and probably should be)
 
